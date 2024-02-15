@@ -1,16 +1,26 @@
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useState } from 'react';
+import ChatRoom from './ChatRoom';
+
 
 export default function App() {
-  function notify() {
-    toast("I am react-toastify");
-  }
+  const [roomId, setRoomId] = useState('general');
   return (
     <>
-      <button onClick={() => notify()}>Click here</button>
-      <ToastContainer
-      position="top-right"
-      ></ToastContainer>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <hr />
+      <ChatRoom
+        roomId={roomId}
+      />
     </>
   );
 }
